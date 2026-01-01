@@ -1,0 +1,155 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500&display=swap");
+
+@import "tailwindcss";
+@theme {
+  /* Colors */
+  --color-background: oklch(14% 0.04 220);
+  --color-surface: oklch(18% 0.035 220);
+  --color-surface-elevated: oklch(22% 0.03 220);
+  --color-border: oklch(30% 0.025 220);
+  --color-border-subtle: oklch(20% 0.025 220);
+
+  --color-foreground: oklch(96% 0.01 210);
+  --color-foreground-muted: oklch(65% 0.02 215);
+  --color-foreground-subtle: oklch(50% 0.02 215);
+
+  --color-primary: oklch(55% 0.15 185);
+  --color-primary-hover: oklch(65% 0.15 185);
+  --color-primary-muted: oklch(35% 0.08 185);
+
+  --color-accent: oklch(65% 0.22 285);
+  --color-accent-hover: oklch(75% 0.22 285);
+
+  --color-success: oklch(55% 0.15 150);
+  --color-warning: oklch(65% 0.18 50);
+  --color-danger: oklch(60% 0.2 25);
+
+  /* Font Families */
+  --font-family-sans: "DM Sans", system-ui, sans-serif;
+  --font-family-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px oklch(0% 0 0 / 0.3);
+  --shadow-md: 0 4px 16px oklch(0% 0 0 / 0.4);
+  --shadow-lg: 0 8px 32px oklch(0% 0 0 / 0.5);
+
+  /* Custom Properties for Gradients and Effects */
+  --gradient-primary-start: oklch(55% 0.15 185);
+  --gradient-primary-end: oklch(60% 0.18 210);
+  --gradient-accent-start: oklch(65% 0.22 285);
+  --gradient-accent-end: oklch(62% 0.18 310);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Animation Durations */
+  --animate-fade-in: fadeIn 0.4s ease-out forwards;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-family-sans);
+    min-height: 100vh;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-surface);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-foreground-subtle);
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: linear-gradient(
+      135deg,
+      oklch(18% 0.035 220 / 0.8),
+      oklch(18% 0.035 220 / 0.6)
+    );
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 20px oklch(55% 0.15 185 / 0.3);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px oklch(65% 0.22 285 / 0.3);
+  }
+
+  .gradient-primary {
+    background: linear-gradient(
+      135deg,
+      var(--gradient-primary-start),
+      var(--gradient-primary-end)
+    );
+  }
+
+  .gradient-accent {
+    background: linear-gradient(
+      135deg,
+      var(--gradient-accent-start),
+      var(--gradient-accent-end)
+    );
+  }
+
+  .animate-fade-in {
+    animation: var(--animate-fade-in);
+  }
+
+  .animate-pulse-glow {
+    animation: var(--animate-pulse-glow);
+  }
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px oklch(55% 0.15 185 / 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px oklch(55% 0.15 185 / 0.4);
+  }
+}
